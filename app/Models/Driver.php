@@ -8,19 +8,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+
+use Illuminate\Database\Eloquent\Casts\Attribute; // for casting
+
+class Driver extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+
     protected $fillable = [
-        'name',
+        'name', 
         'email',
-        'password',
+        'password', 
+        'remember_token'
     ];
 
     /**
@@ -43,7 +43,6 @@ class User extends Authenticatable
     ];
 
 
-    
     // mutator to hash the password before saving it to the database, refer to laravel docs for more info
     protected function password(): Attribute
     {
